@@ -73,13 +73,13 @@
 
     <p>Formatted Date: ${formatDate2}</p>
     
+<j:invokeStatic className="java.time.LocalDate" method="now" var="today"/>
 
-    <!--
-  <j:set var="addMonths" value="3" />
-  <j:invoke on="${addmonths}"
-    <j:arg value="${now}"/>
-    <p> adjusted date :${addMonths}</p>
--->
+<j:set var="future" value="${today.plusMonths(7)}"/>
+
+<p>Adjusted Date: ${future}</p>
+
+<p>Adjusted Date (+3 months): ${cal.time}</p>
 <j:getStatic className="java.lang.Math" field='PI' var='pi'/>
 <p> ${pi}</p>
 <!--hash map as an object-->
