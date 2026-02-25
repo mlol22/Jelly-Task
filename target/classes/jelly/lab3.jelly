@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<j:jelly trim="false" xmlns:j="jelly:core">
+<j:new className="com.example.SimpleFunctions"  var="SF"/>
+<p> First Functions ${SF.sayHello('Your Name')} </p>
+<p> Today In format ${SF.today()} </p>
+<p> even number val: ${SF.eve(3)} </p>
+<p> here is ur name :${SF.surname("mohamed")} </p>
+
+</j:jelly>

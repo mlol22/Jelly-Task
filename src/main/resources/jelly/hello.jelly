@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<j:jelly trim="false" xmlns:j="jelly:core">
+<j:set var ="name" value="Mohamed Shawky"/>
+<j:choose>
+<j:when test="${name eq'Test'}">
+<p> Welcome,Test </p>
+</j:when>
+<j:when test="${name  eq'Test one'}">
+<p> Welcome,Test one</p>
+</j:when>
+<j:when test="${name eq 'Test two'}">
+<p> Welcome,Test Two</p>
+</j:when>
+<j:otherwise>
+<p> welcome,${name}</p>
+</j:otherwise>
+</j:choose>
+<!--switch case lab2-->
+<j:switch on="${name}">
+<j:case value='Test'>
+<p> Welcome,Test </p>
+</j:case>
+<j:case value='Test one'>
+<p> Welcome,Test </p>
+</j:case>
+<j:case value='Test two'>
+<p> Welcome,Test </p>
+</j:case>
+<j:default>
+<p> Welcome ,${name}</p>
+</j:default>
+</j:switch>
+<!--for Index for loop from 0 to 20-->
+<j:forEach var='index_count' begin='0' end='20' step='2'>
+<p>${index_count}</p>
+</j:forEach>
+<j:set var="name" value="yasmine"/>
+<j:set var="age" value="20"/>
+<div>
+<j:expr value="Try Expr ${name}, Hello"/>
+</div>
+<!--Array list class (JAVA)-->
+<j:new className='java.util.ArrayList' var='names'/>
+<j:invoke on="${names}" method="add">
+<j:arg value='Name 1'/>
+</j:invoke>
+<j:invoke on="${names}" method="add">
+<j:arg value='Name 2'/>
+</j:invoke>
+<j:invoke on="${names}" method="add">
+<j:arg value='Name 3'/>
+</j:invoke>
+<j:invoke on="${names}" method="add">
+<j:arg value='Name 4'/>
+</j:invoke>
+
+ <j:new className="java.util.Date" var="now"/>
+    Current date/Time: ${now} <br/>
+
+ 
+    <j:invoke on="${now}" method="getTime" var="timestamp"/>
+    Timestamp: ${timestamp} <br/>
+
+  
+    <j:new className="java.text.SimpleDateFormat" var="formatDate">
+        <j:arg value="MM/dd/yyyy"/>
+    </j:new>
+
+   
+    <j:invoke on="${formatDate}" method="format" var="formatDate2">
+        <j:arg value="${now}"/>
+    </j:invoke>
+
+    <p>Formatted Date: ${formatDate2}</p>
+    
+
+    <!--
+  <j:set var="addMonths" value="3" />
+  <j:invoke on="${addmonths}"
+    <j:arg value="${now}"/>
+    <p> adjusted date :${addMonths}</p>
+-->
+<j:getStatic className="java.lang.Math" field='PI' var='pi'/>
+<p> ${pi}</p>
+<!--hash map as an object-->
+<j:new className="java.util.HashMap" var="user"/>
+
+<j:invoke on="${user}" method="put">
+    <j:arg value="name"/>
+    <j:arg value="your name"/>
+</j:invoke>
+
+<j:invoke on="${user}" method="put">
+    <j:arg value="age"/>
+    <j:arg value="40"/>
+</j:invoke>
+
+<j:invoke on="${user}" method="put">
+    <j:arg value="city"/>
+    <j:arg value="FFF"/>
+</j:invoke>
+
+<p>Age: ${user.get('age')}</p>
+
+<j:invoke on="${user}" method="entrySet" var="entries"/>
+
+<j:forEach var="entry" items="${entries}">
+    <j:invoke on="${entry}" method="getKey" var="key"/>
+    <j:invoke on="${entry}" method="getValue" var="value"/>
+    <p>${key}:${value}</p>
+</j:forEach>
+</j:jelly>
