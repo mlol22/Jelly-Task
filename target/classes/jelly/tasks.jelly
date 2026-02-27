@@ -5,5 +5,8 @@
 <p> Today In format ${SF.today()} </p>
 <p> even number val: ${SF.eve(3)} </p>
 <p> here is ur name :${SF.surname("mohamed")} </p>
-
+<p>
+<j:set var="birthDate" value="${java.time.LocalDate.of(2001,10,23)}"/>
+<p>Your age is: ${calculateAge}</p>
+</p>
 </j:jelly>

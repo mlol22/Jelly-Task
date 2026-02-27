@@ -1,6 +1,8 @@
 package com.example;
 import java.util.Date;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.Period;
 public class SimpleFunctions {
     public String sayHello(String name){
         return "hello" +name + "!";
@@ -23,6 +25,14 @@ public String surname(String nm) {
    nm = nm.toLowerCase(); 
     return nm.substring(0, 1).toUpperCase() + nm.substring(1);
 }
+    
+public static int calculateAge(LocalDate birthDate) {
+        LocalDate currentDate = LocalDate.now();
+        if (birthDate != null && currentDate != null) {
+            return Period.between(birthDate, currentDate).getYears();
+        } else {
+            return 0;
+        }
     }
 
-
+}

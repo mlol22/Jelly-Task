@@ -108,5 +108,66 @@
     <j:invoke on="${entry}" method="getKey" var="key"/>
     <j:invoke on="${entry}" method="getValue" var="value"/>
     <p>${key}:${value}</p>
+
 </j:forEach>
+
+<j:set var="password" value="abfewdwdwd"/> 
+<j:choose>
+    <j:when test="${password.length() &lt; 8}">
+        <p style="color:red;">Error: Password must be at least 8 characters!</p>
+    </j:when>
+    <j:otherwise>
+        <p>Password accepted.</p>
+    </j:otherwise>
+</j:choose>
+<!-- function to get age converting from birthdate to current date and calculate difference-->
+  <j:invokeStatic className="java.time.LocalDate" method="of" var="birthDate">
+        <j:arg value="2008" type="int"/>
+        <j:arg value="1" type="int"/>
+        <j:arg value="29" type="int"/>
+    </j:invokeStatic>
+
+    <j:invokeStatic className="java.time.LocalDate" method="now" var="today"/>
+
+
+    <j:invokeStatic className="java.time.Period" method="between" var="period">
+        <j:arg value="${birthDate}" type="java.time.LocalDate"/>
+        <j:arg value="${today}" type="java.time.LocalDate"/>
+    </j:invokeStatic>
+    <j:invoke on="${period}" method="getYears" var="age"/>
+    <p>Your age is: ${age}</p>
+
+    <!-- this is a function to get the minium number-->
+    <j:invokeStatic var="minValue" className="java.lang.Math" method="min">
+    <j:arg value="50" type="int"/>
+    <j:arg value="10" type="int"/>
+    
+    </j:invokeStatic>
+   <p> Min of 50 and 10 is : ${minValue}</p><br/>
+<j:new className="java.util.Random" var="rand"/>
+<j:set var="randomNum" value="${rand.nextInt(100)}"/>
+<p> random num is : ${randomNum} </p> <br/>
+
+<j:invokeStatic 
+    className="java.time.ZoneId"
+    method="of"
+    var="zone">
+
+    <j:arg type="java.lang.String" value="Africa/Cairo"/>
+
+</j:invokeStatic>
+<j:invokeStatic className="java.time.ZonedDateTime" method="of" var="customDateTime">
+        <j:arg value="2050" type="int"/>
+        <j:arg value="3" type="int"/>
+        <j:arg value="14" type="int"/>
+          <j:arg type="int" value="10"/>   
+    <j:arg type="int" value="30"/>   
+    <j:arg type="int" value="0"/>   
+    <j:arg type="int" value="0"/>
+    <j:arg type="java.time.ZoneId" value="${zone}"/>
+    </j:invokeStatic>
+   <j:set var="finalDateTime"
+       value="${customDateTime.plusHours(10)}"/>
+    <p> Here is my custom date :${customDateTime}</p> <br/>
+    <p> Here is my final date :${finalDateTime}</p>
 </j:jelly>
